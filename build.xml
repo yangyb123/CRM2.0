@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ============================================================================
+    JMeter 自动化测试框架 - Ant Build 脚本
+    ============================================================================
+    项目名称: Mercury 2.0 自动化测试
+    功能描述: 自动执行 JMeter 测试脚本、生成测试报告、发送邮件通知
+    
+    使用方式:
+        1. 修改配置部分的路径和邮件信息
+        2. 运行: ant -f build.xml sendEmail (完整流程)
+        3. 或运行: ant -f build.xml runJMeter (仅执行测试)
+    
+    依赖项:
+        - Apache Ant 1.9+
+        - Apache JMeter 5.6+
+        - JMeter Ant Task 插件
+        - Apache Commons Email 库
+    
+    目录结构:
+        Jmeterautotest/mercury2.0/
+        ├── build.xml (本文件)
+        ├── scripts/ (存放 .jmx 测试脚本)
+        ├── result/
+        │   ├── jtl/ (JTL 原始结果文件)
+        │   └── html/ (HTML 报告)
+        └── xsl/ (XSL 报告模板)
+    ============================================================================
+-->
+<project name="JMeterAutoTest" default="sendEmail" basedir=".">
+    
+    <!-- ========================================================================
+         第一部分：JMeter 基础配置
+         说明: 根据实际环境修改以下路径
+         ======================================================================== -->
+    <property name="jmeter.home" value="C:\softer\jmeter\apache-jmeter-5.6\apache-jmeter-5.6" />
+    <!-- JMeter 安装目录，需要包含 lib、bin 等子目录 -->
+    
+    <!-- ========================================================================
+         第二部分：目录配置
+         说明: 定义测试脚本、结果文件的存储位置
+         ======================================================================== -->
+    <property name="script.dir" value="${basedir}\scripts" />
+    <!-- 存放所有 .jmx 测试脚本的目录 -->
+    
+    <property name="result.dir" value="${basedir}\result" />
+    <!-- 测试结果根目录 -->
+    
+    <property name="jtl.dir" value="${result.dir}\jtl" />
+    <!-- JTL 原始结果文件目录（JMeter 生成的 XML 格式结果） -->
+    
+    <property name="html.dir" value="${result.dir}\html" />
+    <!-- HTML 报告输出目录 -->
+    
+    <property name="xsl.dir" value="${basedir}\xsl" />
+    <!-- XSL 报告模板目录（用于转换 JTL 为 HTML） -->
+    
+    <!-- ========================================================================
+         第三部分：时间戳配置
+         说明: 用于生成唯一的报告文件名
+         ======================================================================== -->
+    <tstamp>
+        <format property="timestamp.full" pattern="yyyy-MM-dd_HH-mm-ss" />
+        <format property="timestamp.date" pattern="yyyy-MM-dd" />
+        <format property="timestamp.time" pattern="HH:mm:ss" />
+    </tstamp>
+    
+    <property name="report.prefix" value="TestReport_${timestamp.full}" />
+    <!-- 报告文件前缀（包含日期和时间，确保唯一性） -->
+    
+    <!-- ========================================================================
+         第四部分：邮件配置
+         说明: 根据邮箱类型修改 SMTP 服务器和认证信息
+         常见 SMTP 服务器:
+            - QQ 邮箱: smtp.qq.com (端口 465 SSL)
+            - 163 邮箱: smtp.163.com (端口 465 SSL)
+            - Gmail: smtp.gmail.com (端口 587 TLS)
+            - 企业邮箱: 根据公司配置
+         ======================================================================== -->
+    <property name="mail.host" value="smtp.qq.com" />
+    <!-- SMTP 服务器地址 -->
+    
+    <property name="mail.port" value="465" />
+    <!-- SMTP 端口（SSL 通常为 465，TLS 通常为 587） -->
+    
+    <property name="mail.from" value="1047720097@qq.com" />
+    <!-- 发件人邮箱地址 -->
+    
+    <property name="mail.password" value="授权码" />
+    <!-- 邮箱授权码（不是邮箱密码，需要在邮箱设置中生成） -->
+    
+    <property name="mail.to" value="1047720097@qq.com" />
+    <!-- 收件人邮箱（多个收件人用逗号分隔，如: user1@qq.com,user2@qq.com） -->
+    
+    <property name="mail.subject" value="Mercury 2.0 自动化测试报告 - ${timestamp.date}" />
+    <!-- 邮件主题 -->
+    
+    <!-- ========================================================================
+         第五部分：初始化任务
+         说明: 创建必要的目录结构
+         ======================================================================== -->
+    <target name="init" description="初始化目录结构">
+        <echo message="========================================" />
+        <echo message="初始化目录结构..." />
+        <echo message="========================================" />
+        
+        <mkdir dir="${script.dir}" />
+        <echo message="✓ 创建脚本目录: ${script.dir}" />
+        
+        <mkdir dir="${jtl.dir}" />
+        <echo message="✓ 创建 JTL 结果目录: ${jtl.dir}" />
+        
+        <mkdir dir="${html.dir}" />
+        <echo message="✓ 创建 HTML 报告目录: ${html.dir}" />
+        
+        <mkdir dir="${xsl.dir}" />
+        <echo message="✓ 创建 XSL 模板目录: ${xsl.dir}" />
+        
+        <echo message="初始化完成！" />
+    </target>
+    
+    <!-- ========================================================================
+         第六部分：执行 JMeter 测试
+         说明: 运行所有 .jmx 脚本并生成 JTL 结果文件
+         ======================================================================== -->
+    <target name="runJMeter" depends="init" description="执行 JMeter 测试脚本">
+        <echo message="========================================" />
+        <echo message="开始执行 JMeter 测试..." />
+        <echo message="========================================" />
+        <echo message="JMeter 主目录: ${jmeter.home}" />
+        <echo message="测试脚本目录: ${script.dir}" />
+        <echo message="结果输出目录: ${jtl.dir}" />
+        <echo message="========================================" />
+        
+        <!-- 定义 JMeter Ant Task -->
+        <taskdef name="jmeter" 
+                 classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
+        
+        <!-- 执行 JMeter 测试 -->
+        <jmeter jmeterhome="${jmeter.home}" 
+                resultlog="${jtl.dir}\${report.prefix}.jtl"
+                failureProperty="jmeter.failed">
+            
+            <!-- 指定要执行的测试脚本 -->
+            <testplans dir="${script.dir}" includes="*.jmx" />
+            
+            <!-- JMeter 配置属性 -->
+            <property name="jmeter.save.saveservice.output_format" value="xml" />
+            <!-- 结果文件格式为 XML -->
+            
+            <property name="jmeter.save.saveservice.response_data.on_error" value="false" />
+            <!-- 仅在错误时保存响应数据，减少文件大小 -->
+            
+            <property name="jmeter.save.saveservice.samplerData" value="true" />
+            <!-- 保存采样器数据 -->
+            
+            <property name="jmeter.save.saveservice.responseHeaders" value="true" />
+            <!-- 保存响应头 -->
+            
+            <property name="jmeter.save.saveservice.requestHeaders" value="true" />
+            <!-- 保存请求头 -->
+            
+            <property name="jmeter.save.saveservice.encoding" value="true" />
+            <!-- 保存编码信息 -->
+            
+            <property name="jmeter.save.saveservice.latency" value="true" />
+            <!-- 保存延迟时间 -->
+            
+            <property name="jmeter.save.saveservice.connect_time" value="true" />
+            <!-- 保存连接时间 -->
+            
+            <property name="httpclient.socket.timeout" value="30000" />
+            <!-- HTTP 连接超时 30 秒 -->
+            
+            <property name="httpclient.connection.timeout" value="30000" />
+            <!-- HTTP 响应超时 30 秒 -->
+        </jmeter>
+        
+        <!-- 检查测试是否失败 -->
+        <condition property="jmeter.test.failed">
+            <isset property="jmeter.failed" />
+        </condition>
+        
+        <echo message="JMeter 测试执行完成！" />
+        <echo message="结果文件: ${jtl.dir}\${report.prefix}.jtl" />
+    </target>
+    
+    <!-- ========================================================================
+         第七部分：生成详细报告
+         说明: 将 JTL 文件转换为详细的 HTML 报告
+         ======================================================================== -->
+    <target name="generateDetailReport" depends="runJMeter" 
+            description="生成详细的 HTML 测试报告">
+        <echo message="========================================" />
+        <echo message="生成详细测试报告..." />
+        <echo message="========================================" />
+        
+        <!-- 使用 XSL 模板转换 JTL 为 HTML -->
+        <xslt in="${jtl.dir}\${report.prefix}.jtl" 
+              out="${html.dir}\${report.prefix}_Detail.html" 
+              style="${xsl.dir}\jmeter-results-detail-report_21.xsl"
+              force="true">
+            <!-- XSL 转换参数 -->
+            <param name="showData" expression="y" />
+            <param name="titleReport" expression="JMeter 详细测试报告" />
+        </xslt>
+        
+        <!-- 复制报告所需的静态资源（图标、样式等） -->
+        <copy todir="${html.dir}" failonerror="false">
+            <fileset dir="${jmeter.home}\extras">
+                <include name="collapse.png" />
+                <include name="expand.png" />
+            </fileset>
+        </copy>
+        
+        <echo message="✓ 详细报告生成完成: ${html.dir}\${report.prefix}_Detail.html" />
+    </target>
+    
+    <!-- ========================================================================
+         第八部分：生成汇总报告
+         说明: 生成简洁的汇总报告，包含关键指标
+         ======================================================================== -->
+    <target name="generateSummaryReport" depends="generateDetailReport" 
+            description="生成汇总测试报告">
+        <echo message="========================================" />
+        <echo message="生成汇总测试报告..." />
+        <echo message="========================================" />
+        
+        <!-- 使用自定义 XSL 模板生成汇总报告 -->
+        <xslt in="${jtl.dir}\${report.prefix}.jtl" 
+              out="${html.dir}\${report.prefix}_Summary.html" 
+              style="${xsl.dir}\jmeter-results-summary.xsl"
+              force="true">
+            <param name="titleReport" expression="JMeter 汇总测试报告" />
+        </xslt>
+        
+        <echo message="✓ 汇总报告生成完成: ${html.dir}\${report.prefix}_Summary.html" />
+    </target>
+    
+    <!-- ========================================================================
+         第九部分：发送邮件通知
+         说明: 将测试报告通过邮件发送给相关人员
+         ======================================================================== -->
+    <target name="sendEmail" depends="generateSummaryReport" 
+            description="发送测试报告邮件">
+        <echo message="========================================" />
+        <echo message="准备发送测试报告邮件..." />
+        <echo message="========================================" />
+        <echo message="收件人: ${mail.to}" />
+        <echo message="邮件主题: ${mail.subject}" />
+        
+        <!-- 发送邮件 -->
+        <mail mailhost="${mail.host}" 
+              mailport="${mail.port}" 
+              subject="${mail.subject}" 
+              from="${mail.from}" 
+              tolist="${mail.to}"
+              user="${mail.from}"
+              password="${mail.password}"
+              ssl="true"
+              charset="UTF-8">
+            
+            <!-- 邮件正文（HTML 格式） -->
+            <message format="html">
+                <![CDATA[
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; color: #333; }
+                        h2 { color: #0066cc; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+                        .info { background-color: #f0f8ff; padding: 10px; margin: 10px 0; border-left: 4px solid #0066cc; }
+                        .link { color: #0066cc; text-decoration: none; font-weight: bold; }
+                        .footer { color: #999; font-size: 12px; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; }
+                    </style>
+                </head>
+                <body>
+                    <h2>Mercury 2.0 自动化测试报告</h2>
+                    
+                    <div class="info">
+                        <p><strong>测试时间:</strong> ${timestamp.date} ${timestamp.time}</p>
+                        <p><strong>报告名称:</strong> ${report.prefix}</p>
+                    </div>
+                    
+                    <h3>📊 报告链接</h3>
+                    <ul>
+                        <li><a class="link" href="file:///${html.dir}\${report.prefix}_Detail.html">📄 详细报告</a> - 包含所有测试用例的详细信息</li>
+                        <li><a class="link" href="file:///${html.dir}\${report.prefix}_Summary.html">📈 汇总报告</a> - 包含关键指标和统计数据</li>
+                    </ul>
+                    
+                    <h3>📁 报告文件位置</h3>
+                    <div class="info">
+                        <p>${html.dir}</p>
+                    </div>
+                    
+                    <h3>⚠️ 注意事项</h3>
+                    <ul>
+                        <li>如果上述链接无法打开，请手动访问报告文件位置</li>
+                        <li>报告文件为 HTML 格式，可用任何浏览器打开</li>
+                        <li>详细报告包含完整的测试数据，文件较大</li>
+                    </ul>
+                    
+                    <div class="footer">
+                        <p>此邮件由 JMeter 自动化测试框架自动生成，请勿直接回复。</p>
+                        <p>如有问题，请联系测试团队。</p>
+                    </div>
+                </body>
+                </html>
+                ]]>
+            </message>
+            
+            <!-- 附件：测试报告 -->
+            <attachments>
+                <fileset dir="${html.dir}">
+                    <include name="${report.prefix}_Detail.html" />
+                    <include name="${report.prefix}_Summary.html" />
+                </fileset>
+            </attachments>
+        </mail>
+        
+        <echo message="✓ 邮件发送完成！" />
+        <echo message="========================================" />
+        <echo message="测试流程全部完成！" />
+        <echo message="========================================" />
+    </target>
+    
+    <!-- ========================================================================
+         第十部分：清理任务
+         说明: 清理旧的测试结果和报告
+         ======================================================================== -->
+    <target name="clean" description="清理旧的测试结果">
+        <echo message="清理旧的测试结果..." />
+        <delete dir="${result.dir}" />
+        <echo message="✓ 清理完成！" />
+    </target>
+    
+    <!-- ========================================================================
+         第十一部分：仅执行测试（不发送邮件）
+         说明: 快速执行测试，用于调试
+         ======================================================================== -->
+    <target name="testOnly" depends="runJMeter" 
+            description="仅执行测试，不生成报告和发送邮件">
+        <echo message="测试执行完成！结果文件: ${jtl.dir}\${report.prefix}.jtl" />
+    </target>
+    
+    <!-- ========================================================================
+         第十二部分：生成报告（不发送邮件）
+         说明: 执行测试并生成报告，但不发送邮件
+         ======================================================================== -->
+    <target name="reportOnly" depends="generateSummaryReport" 
+            description="执行测试并生成报告，不发送邮件">
+        <echo message="测试和报告生成完成！" />
+        <echo message="详细报告: ${html.dir}\${report.prefix}_Detail.html" />
+        <echo message="汇总报告: ${html.dir}\${report.prefix}_Summary.html" />
+    </target>
+    
+    <!-- ========================================================================
+         第十三部分：帮助信息
+         说明: 显示可用的任务列表
+         ======================================================================== -->
+    <target name="help" description="显示帮助信息">
+        <echo message="========================================" />
+        <echo message="JMeter 自动化测试框架 - 可用任务" />
+        <echo message="========================================" />
+        <echo message="" />
+        <echo message="主要任务:" />
+        <echo message="  ant sendEmail      - 完整流程（测试 → 报告 → 邮件）" />
+        <echo message="  ant reportOnly     - 执行测试并生成报告（不发送邮件）" />
+        <echo message="  ant testOnly       - 仅执行测试（不生成报告）" />
+        <echo message="" />
+        <echo message="辅助任务:" />
+        <echo message="  ant init           - 初始化目录结构" />
+        <echo message="  ant clean          - 清理旧的测试结果" />
+        <echo message="  ant help           - 显示此帮助信息" />
+        <echo message="" />
+        <echo message="========================================" />
+    </target>
+</project>
