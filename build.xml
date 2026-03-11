@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
     ============================================================================
     JMeter 自动化测试框架 - Ant Build 脚本
@@ -121,7 +121,7 @@
     
     <!-- ========================================================================
          第六部分：执行 JMeter 测试
-         说明: 运行所有 .jmx 脚本并生成 JTL 结果文件
+         说明: 使用命令行方式执行 JMeter，避免 Ant Task 的兼容性问题
          ======================================================================== -->
     <target name="runJMeter" depends="init" description="执行 JMeter 测试脚本">
         <echo message="========================================" />
@@ -132,62 +132,28 @@
         <echo message="结果输出目录: ${jtl.dir}" />
         <echo message="========================================" />
         
-        <!-- 定义 JMeter Ant Task -->
-        <taskdef name="jmeter" 
-                 classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />
+        <!-- 直接执行 JMeter，使用英文文件名避免编码问题 -->
+        <exec executable="cmd.exe" 
+              failonerror="true"
+              timeout="900000"
+              dir="${basedir}">
+            <env key="HEAP" value="-Xmx256m -Xms128m" />
+            <arg value="/c" />
+            <arg value="${jmeter.home}\bin\jmeter.bat -n -t scripts\shuixing-002.jmx -l result\jtl\${report.prefix}.jtl -j result\jtl\${report.prefix}.log -Djmeter.save.saveservice.output_format=xml -Djmeter.save.saveservice.response_data.on_error=false -Djmeter.save.saveservice.samplerData=false -Djmeter.save.saveservice.responseHeaders=false -Djmeter.save.saveservice.requestHeaders=false -Djmeter.save.saveservice.encoding=false -Djmeter.save.saveservice.latency=true -Djmeter.save.saveservice.connect_time=true -Dhttpclient.socket.timeout=10000 -Dhttpclient.connection.timeout=10000 -Djmeter.gui.action.action.listener.classname=org.apache.jmeter.visualizers.SimpleResultCollector -Dlog_level.jmeter=WARN" />
+        </exec>
         
-        <!-- 执行 JMeter 测试 -->
-        <jmeter jmeterhome="${jmeter.home}" 
-                resultlog="${jtl.dir}\${report.prefix}.jtl"
-                failureProperty="jmeter.failed">
-            
-            <!-- 指定要执行的测试脚本 -->
-            <testplans dir="${script.dir}" includes="*.jmx" />
-            
-            <!-- JMeter 配置属性 -->
-            <property name="jmeter.save.saveservice.output_format" value="xml" />
-            <!-- 结果文件格式为 XML -->
-            
-            <property name="jmeter.save.saveservice.response_data.on_error" value="false" />
-            <!-- 仅在错误时保存响应数据，减少文件大小 -->
-            
-            <property name="jmeter.save.saveservice.samplerData" value="true" />
-            <!-- 保存采样器数据 -->
-            
-            <property name="jmeter.save.saveservice.responseHeaders" value="true" />
-            <!-- 保存响应头 -->
-            
-            <property name="jmeter.save.saveservice.requestHeaders" value="true" />
-            <!-- 保存请求头 -->
-            
-            <property name="jmeter.save.saveservice.encoding" value="true" />
-            <!-- 保存编码信息 -->
-            
-            <property name="jmeter.save.saveservice.latency" value="true" />
-            <!-- 保存延迟时间 -->
-            
-            <property name="jmeter.save.saveservice.connect_time" value="true" />
-            <!-- 保存连接时间 -->
-            
-            <property name="httpclient.socket.timeout" value="30000" />
-            <!-- HTTP 连接超时 30 秒 -->
-            
-            <property name="httpclient.connection.timeout" value="30000" />
-            <!-- HTTP 响应超时 30 秒 -->
-        </jmeter>
-        
-        <!-- 检查测试是否失败 -->
-        <condition property="jmeter.test.failed">
-            <isset property="jmeter.failed" />
-        </condition>
+        <!-- 验证 JTL 文件是否生成 -->
+        <available file="${jtl.dir}/${report.prefix}.jtl" property="jtl.generated" />
+        <fail unless="jtl.generated" message="错误: JMeter 测试执行失败，未生成 JTL 文件" />
         
         <echo message="JMeter 测试执行完成！" />
-        <echo message="结果文件: ${jtl.dir}\${report.prefix}.jtl" />
+        <echo message="结果文件: ${jtl.dir}/${report.prefix}.jtl" />
+        <echo message="日志文件: ${jtl.dir}/${report.prefix}.log" />
     </target>
     
     <!-- ========================================================================
          第七部分：生成详细报告
-         说明: 将 JTL 文件转换为详细的 HTML 报告
+         说明: 使用 XSL 样式表将 JTL 文件转换为详细的 HTML 报告
          ======================================================================== -->
     <target name="generateDetailReport" depends="runJMeter" 
             description="生成详细的 HTML 测试报告">
@@ -195,30 +161,29 @@
         <echo message="生成详细测试报告..." />
         <echo message="========================================" />
         
-        <!-- 使用 XSL 模板转换 JTL 为 HTML -->
-        <xslt in="${jtl.dir}\${report.prefix}.jtl" 
-              out="${html.dir}\${report.prefix}_Detail.html" 
-              style="${xsl.dir}\jmeter-results-detail-report_21.xsl"
+        <!-- 检查 JTL 文件是否存在 -->
+        <available file="${jtl.dir}/${report.prefix}.jtl" property="jtl.file.exists" />
+        
+        <fail unless="jtl.file.exists" 
+              message="错误: JTL 结果文件不存在 - ${jtl.dir}/${report.prefix}.jtl" />
+        
+        <echo message="✓ 找到 JTL 文件: ${jtl.dir}/${report.prefix}.jtl" />
+        
+        <!-- 使用 XSL 样式表转换 JTL 为 HTML -->
+        <xslt in="${jtl.dir}/${report.prefix}.jtl" 
+              out="${html.dir}/${report.prefix}_Detail.html" 
+              style="${xsl.dir}/jmeter-results-detail-report_21.xsl"
               force="true">
-            <!-- XSL 转换参数 -->
-            <param name="showData" expression="y" />
-            <param name="titleReport" expression="JMeter 详细测试报告" />
+            <param name="titleReport" expression="JMeter 详细测试报告 - ${report.prefix}" />
+            <param name="dateReport" expression="${timestamp.full}" />
         </xslt>
         
-        <!-- 复制报告所需的静态资源（图标、样式等） -->
-        <copy todir="${html.dir}" failonerror="false">
-            <fileset dir="${jmeter.home}\extras">
-                <include name="collapse.png" />
-                <include name="expand.png" />
-            </fileset>
-        </copy>
-        
-        <echo message="✓ 详细报告生成完成: ${html.dir}\${report.prefix}_Detail.html" />
+        <echo message="✓ 详细报告生成完成: ${html.dir}/${report.prefix}_Detail.html" />
     </target>
     
     <!-- ========================================================================
          第八部分：生成汇总报告
-         说明: 生成简洁的汇总报告，包含关键指标
+         说明: 使用增强的 XSL 样式表生成汇总报告（包含图表）
          ======================================================================== -->
     <target name="generateSummaryReport" depends="generateDetailReport" 
             description="生成汇总测试报告">
@@ -226,15 +191,38 @@
         <echo message="生成汇总测试报告..." />
         <echo message="========================================" />
         
-        <!-- 使用自定义 XSL 模板生成汇总报告 -->
-        <xslt in="${jtl.dir}\${report.prefix}.jtl" 
-              out="${html.dir}\${report.prefix}_Summary.html" 
-              style="${xsl.dir}\jmeter-results-summary.xsl"
+        <!-- 检查 JTL 文件是否存在 -->
+        <available file="${jtl.dir}/${report.prefix}.jtl" property="jtl.file.for.summary.exists" />
+        
+        <fail unless="jtl.file.for.summary.exists" 
+              message="错误: JTL 结果文件不存在，无法生成汇总报告 - ${jtl.dir}/${report.prefix}.jtl" />
+        
+        <!-- 使用增强的 XSL 样式表转换 JTL 为 HTML（包含图表） -->
+        <xslt in="${jtl.dir}/${report.prefix}.jtl" 
+              out="${html.dir}/${report.prefix}_Summary.html" 
+              style="${xsl.dir}/jmeter-results-report-enhanced.xsl"
               force="true">
-            <param name="titleReport" expression="JMeter 汇总测试报告" />
+            <param name="titleReport" expression="JMeter 性能测试报告 - ${report.prefix}" />
+            <param name="dateReport" expression="${timestamp.full}" />
         </xslt>
         
-        <echo message="✓ 汇总报告生成完成: ${html.dir}\${report.prefix}_Summary.html" />
+        <!-- 验证汇总报告是否生成成功 -->
+        <available file="${html.dir}/${report.prefix}_Summary.html" property="summary.report.exists" />
+        
+        <fail unless="summary.report.exists" 
+              message="错误: 汇总报告生成失败。请检查 JTL 文件是否有效。" />
+        
+        <echo message="✓ 汇总报告生成完成: ${html.dir}/${report.prefix}_Summary.html" />
+        
+        <!-- 列出生成的所有报告文件 -->
+        <echo message="========================================" />
+        <echo message="生成的报告文件:" />
+        <fileset dir="${html.dir}" id="report.files">
+            <include name="${report.prefix}*.html" />
+        </fileset>
+        <pathconvert pathsep="${line.separator}" property="report.list" refid="report.files" />
+        <echo message="${report.list}" />
+        <echo message="========================================" />
     </target>
     
     <!-- ========================================================================
@@ -284,8 +272,8 @@
                     
                     <h3>📊 报告链接</h3>
                     <ul>
-                        <li><a class="link" href="file:///${html.dir}\${report.prefix}_Detail.html">📄 详细报告</a> - 包含所有测试用例的详细信息</li>
-                        <li><a class="link" href="file:///${html.dir}\${report.prefix}_Summary.html">📈 汇总报告</a> - 包含关键指标和统计数据</li>
+                        <li><a class="link" href="file:///${html.dir}/${report.prefix}_Detail.html">📄 详细报告</a> - 包含所有测试用例的详细信息</li>
+                        <li><a class="link" href="file:///${html.dir}/${report.prefix}_Summary.html">📈 汇总报告</a> - 包含关键指标和统计数据</li>
                     </ul>
                     
                     <h3>📁 报告文件位置</h3>
@@ -355,7 +343,16 @@
     </target>
     
     <!-- ========================================================================
-         第十三部分：帮助信息
+         第十三部分：完整流程（all 目标）
+         说明: 别名目标，用于 Jenkins 兼容性
+         ======================================================================== -->
+    <target name="all" depends="sendEmail" 
+            description="完整流程（测试 → 报告 → 邮件）">
+        <echo message="完整流程执行完成！" />
+    </target>
+    
+    <!-- ========================================================================
+         第十四部分：帮助信息
          说明: 显示可用的任务列表
          ======================================================================== -->
     <target name="help" description="显示帮助信息">
