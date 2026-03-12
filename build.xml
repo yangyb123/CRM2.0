@@ -55,8 +55,8 @@
     <property name="xsl.dir" value="${basedir}\xsl" />
 	
 	
-	<!-- 如需修改已定义的属性，需加override="true" -->
-     <property name="project.name" value="水星2.0"/>
+	<!-- 如需修改已定义的属性， 【新项目需要修改地方】 -->
+     <property name="project.name" value="CRM2.0"/>
 	
     <!-- XSL 报告模板目录（用于转换 JTL 为 HTML） -->
     
@@ -116,7 +116,7 @@
     <property name="test.environment" value="测试环境" />
     <!-- 测试环境（如：测试环境、预发布环境等） -->
     
-    <property name="test.description" value="自动化接口测试" />
+    <property name="test.description" value="接口自动化测试" />
     <!-- 测试描述 -->
     
     <!-- ========================================================================
