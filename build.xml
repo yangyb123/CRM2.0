@@ -344,7 +344,8 @@
             <to address="${mail.to}" />
             
             <!-- 抄送收件人 -->
-            <cc address="${mail.cc}" />
+            <cc address="lance.yang@mhmarkets.com" />
+            <cc address="jamie@mhmarkets.com" />
             
             <!-- 邮件正文（HTML 格式） -->
             <message mimeType="text/html">
