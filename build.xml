@@ -97,7 +97,7 @@
     <property name="mail.to" value="1047720097@qq.com" />
     <!-- 主收件人邮箱 -->
     
-    <property name="mail.cc" value="lance.yang@mhmarkets.com" />
+    <property name="mail.cc" value="lance.yang@mhmarkets.com,jamie@mhmarkets.com" />
     <!-- 抄送收件人（多个用逗号分隔） -->
     
     <property name="mail.subject" value="${project.name} 自动化测试报告 - ${timestamp.date}" />
