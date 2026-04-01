@@ -1,0 +1,11 @@
+withdraw_type#accountId#sourceType#amount#channelId#paymentMethod#currencyId#initial_status#risk_status#deduction_status#cardInfo#cryptoInfo#eWalletInfo#wireTransferInfo#bankInfo
+ewallet#40835#1#70#4#4#45#1#1#1###"{""walletName"":""ABC1236"",""accountNumber"":""110101"",""accountHolderName"":""test Hani01""}"##
+wiretransfer#40857#1#10000#8#8#45#1#1#1####"{""bankCode"":""add"",""bankName"":""≤‚ ‘"",""bankBranch"":""test"",""beneficiaryCountry"":2,""accountHolderName"":""test Hani01"",""accountNumber"":""10225"",""iban"":""1111"",""swiftCode"":""2222"",""bankAddress"":""3333"",""beneficiaryAddress"":""4444"",""bankCardPictures"":[""2768c8da-bbd1-469e-ba96-0afcf64073f8"",""8527dbf7-45e7-44a8-ad43-2dfee184e85f""]}"#
+banktransfer#40884#1#25#2#2#45#1#1#1#####"{""bankCode"":""add"",""bankName"":""test"",""bankBranch"":""teat"",""accountHolderName"":""test Hani01"",""accountNumber"":""1102010"",""bankCardPictures"":[""134b440a-815a-439f-9194-fbf154c86d77"",""15eb737f-f581-4aeb-9286-1561f3931e43""]}"
+card#40857#1#1000#6#6#45#1#1#1#"{""bankCode"":15384}"####
+crypto#40835#1#60#3#3#242#1#1#1##"{""walletAddress"": ""154AAA""}"###
+ewallet#40835#1#10#4#4#45#1#1#2###"{""walletName"":""ABC1236"",""accountNumber"":""110101"",""accountHolderName"":""test Hani01""}"##
+wiretransfer#40857#1#1000#8#8#45#1#2#1####"{""bankCode"":""add"",""bankName"":""≤‚ ‘"",""bankBranch"":""test"",""beneficiaryCountry"":2,""accountHolderName"":""test Hani01"",""accountNumber"":""10225"",""iban"":""1111"",""swiftCode"":""2222"",""bankAddress"":""3333"",""beneficiaryAddress"":""4444"",""bankCardPictures"":[""2768c8da-bbd1-469e-ba96-0afcf64073f8"",""8527dbf7-45e7-44a8-ad43-2dfee184e85f""]}"#
+banktransfer#40884#1#25#2#2#45#2#1#1#####"{""bankCode"":""add"",""bankName"":""test"",""bankBranch"":""teat"",""accountHolderName"":""test Hani01"",""accountNumber"":""1102010"",""bankCardPictures"":[""134b440a-815a-439f-9194-fbf154c86d77"",""15eb737f-f581-4aeb-9286-1561f3931e43""]}"
+card#40857#1#1000#6#6#45#1#1#2#"{""bankCode"":15384}"####
+crypto#40857#1#100#3#3#242#2#2#1##"{""walletAddress"": ""154AAA""}"###
