@@ -14,6 +14,7 @@
             <stringProp name="Argument.name">ip</stringProp>
             <stringProp name="Argument.value">crm2-api-test.mohicanstech.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">CRMip</stringProp>
           </elementProp>
           <elementProp name="email" elementType="Argument">
             <stringProp name="Argument.name">email</stringProp>
@@ -37,19 +38,21 @@
           </elementProp>
           <elementProp name="userSearchValue51" elementType="Argument">
             <stringProp name="Argument.name">userSearchValue51</stringProp>
-            <stringProp name="Argument.value">200006</stringProp>
+            <stringProp name="Argument.value">4050</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">mt5账号</stringProp>
           </elementProp>
           <elementProp name="userSearchValue41" elementType="Argument">
             <stringProp name="Argument.name">userSearchValue41</stringProp>
             <stringProp name="Argument.value">1012</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">mt4账号</stringProp>
           </elementProp>
           <elementProp name="account_id1" elementType="Argument">
             <stringProp name="Argument.name">account_id1</stringProp>
-            <stringProp name="Argument.value">40835</stringProp>
+            <stringProp name="Argument.value">40889</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
-            <stringProp name="Argument.desc">12110同名转账(有信用金)</stringProp>
+            <stringProp name="Argument.desc">12153同名转账(有信用金)</stringProp>
           </elementProp>
           <elementProp name="account_id2" elementType="Argument">
             <stringProp name="Argument.name">account_id2</stringProp>
@@ -78,6 +81,45 @@
           <elementProp name="toAccount1" elementType="Argument">
             <stringProp name="Argument.name">toAccount1</stringProp>
             <stringProp name="Argument.value">200006</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="middlewareip" elementType="Argument">
+            <stringProp name="Argument.name">middlewareip</stringProp>
+            <stringProp name="Argument.value">18.138.116.138</stringProp>
+            <stringProp name="Argument.desc">中间件ip</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="port" elementType="Argument">
+            <stringProp name="Argument.name">port</stringProp>
+            <stringProp name="Argument.value">8080</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="orderid" elementType="Argument">
+            <stringProp name="Argument.name">orderid</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">下单接口ip</stringProp>
+          </elementProp>
+          <elementProp name="mt5instanceid" elementType="Argument">
+            <stringProp name="Argument.name">mt5instanceid</stringProp>
+            <stringProp name="Argument.value">MT5_1</stringProp>
+            <stringProp name="Argument.desc">MT5id</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="mt4instanceid" elementType="Argument">
+            <stringProp name="Argument.name">mt4instanceid</stringProp>
+            <stringProp name="Argument.value">MT4_1</stringProp>
+            <stringProp name="Argument.desc">MT4id</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="symbol1" elementType="Argument">
+            <stringProp name="Argument.name">symbol1</stringProp>
+            <stringProp name="Argument.value">EURUSD</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="symbol2" elementType="Argument">
+            <stringProp name="Argument.name">symbol2</stringProp>
+            <stringProp name="Argument.value">GBPUSD</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -5274,7 +5316,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单" enabled="true">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
@@ -5322,7 +5364,7 @@ vars.put(&quot;loop_count_Loop1&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="待处理/历史订单" enabled="true">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="待处理/历史订单">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
