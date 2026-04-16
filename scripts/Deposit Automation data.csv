@@ -1,3 +1,5 @@
 accountId,amount,channelId,paymentMethod,currencyId,initial_status,recheck_status
 40857,20000,127,5,32,1,2
 40857,25000,30,6,45,1,2
+40857,20000,127,5,32,3,3
+40857,25000,30,6,45,3,3
