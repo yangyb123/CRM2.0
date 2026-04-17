@@ -26,6 +26,12 @@
             <stringProp name="Argument.value">123456Aa.</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="userId" elementType="Argument">
+            <stringProp name="Argument.name">userId</stringProp>
+            <stringProp name="Argument.value">U7LCYE</stringProp>
+            <stringProp name="Argument.desc">hani01@test.com的UID</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="usernameOrEmail" elementType="Argument">
             <stringProp name="Argument.name">usernameOrEmail</stringProp>
             <stringProp name="Argument.value">admin@localhost</stringProp>
@@ -146,7 +152,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="订单及返佣" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="清理环境" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -157,12 +163,875 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="下单">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="Connection" elementType="Header">
+              <stringProp name="Header.name">Connection</stringProp>
+              <stringProp name="Header.value">keep-alive</stringProp>
+            </elementProp>
+            <elementProp name="Content-Length" elementType="Header">
+              <stringProp name="Header.name">Content-Length</stringProp>
+              <stringProp name="Header.value">101</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua-platform" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+              <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+            </elementProp>
+            <elementProp name="x-device-code" elementType="Header">
+              <stringProp name="Header.name">x-device-code</stringProp>
+              <stringProp name="Header.value">7b3aea63-3d71-4aa8-b9a7-6127a5542bc9</stringProp>
+            </elementProp>
+            <elementProp name="User-Agent" elementType="Header">
+              <stringProp name="Header.name">User-Agent</stringProp>
+              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36</stringProp>
+            </elementProp>
+            <elementProp name="accept" elementType="Header">
+              <stringProp name="Header.name">accept</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua</stringProp>
+              <stringProp name="Header.value">&quot;Chromium&quot;;v=&quot;142&quot;, &quot;Google Chrome&quot;;v=&quot;142&quot;, &quot;Not_A Brand&quot;;v=&quot;99&quot;</stringProp>
+            </elementProp>
+            <elementProp name="content-type" elementType="Header">
+              <stringProp name="Header.name">content-type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="sec-ch-ua-mobile" elementType="Header">
+              <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+              <stringProp name="Header.value">?0</stringProp>
+            </elementProp>
+            <elementProp name="Origin" elementType="Header">
+              <stringProp name="Header.name">Origin</stringProp>
+              <stringProp name="Header.value">https://crm2-admin-test.mohicanstech.com</stringProp>
+            </elementProp>
+            <elementProp name="Sec-Fetch-Site" elementType="Header">
+              <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+              <stringProp name="Header.value">same-site</stringProp>
+            </elementProp>
+            <elementProp name="Sec-Fetch-Mode" elementType="Header">
+              <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+              <stringProp name="Header.value">cors</stringProp>
+            </elementProp>
+            <elementProp name="Sec-Fetch-Dest" elementType="Header">
+              <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+              <stringProp name="Header.value">empty</stringProp>
+            </elementProp>
+            <elementProp name="Referer" elementType="Header">
+              <stringProp name="Header.name">Referer</stringProp>
+              <stringProp name="Header.value">https://crm2-admin-test.mohicanstech.com/</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Encoding" elementType="Header">
+              <stringProp name="Header.name">Accept-Encoding</stringProp>
+              <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+            </elementProp>
+            <elementProp name="Accept-Language" elementType="Header">
+              <stringProp name="Header.name">Accept-Language</stringProp>
+              <stringProp name="Header.value">zh-CN,zh;q=0.9</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Cookie</stringProp>
+              <stringProp name="Header.value">admin_auth_token=${auth_token}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-csrf-token</stringProp>
+              <stringProp name="Header.value">${csrf_token}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-hcaptcha-skip</stringProp>
+              <stringProp name="Header.value">true</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录" enabled="true">
+          <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/admin/admin-user/login</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;usernameOrEmail&quot;:&quot;${usernameOrEmail}&quot;,&#xd;
+	&quot;password&quot;:&quot;${password_2}&quot;,&#xd;
+	&quot;otp&quot;:&quot;123456&quot;,&#xd;
+	&quot;captchaCode&quot;:&quot;111111&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="auth_token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">true</stringProp>
+            <stringProp name="RegexExtractor.refname">auth_token</stringProp>
+            <stringProp name="RegexExtractor.regex">admin_auth_token=([^;]+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">null</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="csrf_token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">csrf_token</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;token&quot;:&quot;([^,]+)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">null</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金待审核订单" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT5下单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="出金待审核订单查询" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderIds" enabled="false">
+              <stringProp name="JSONPostProcessor.referenceNames">orderIds</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderIds; totalCount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderIds; totalCount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id; $.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND;NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="判断是否满足准入条件" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&apos;totalCount&apos;) != &apos;0&apos; &amp;&amp; vars.get(&apos;orderIds_matchNr&apos;).toInteger() &gt; 0)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+            <stringProp name="TestPlan.comments">total 不等于 0且 提取到的订单ID数量大于 0</stringProp>
+          </IfController>
+          <hashTree>
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+              <stringProp name="ForeachController.inputVal">orderIds</stringProp>
+              <stringProp name="ForeachController.returnVal">orderId</stringProp>
+              <boolProp name="ForeachController.useSeparator">true</boolProp>
+              <stringProp name="ForeachController.startIndex">0</stringProp>
+            </ForeachController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="出金初审" enabled="true">
+                <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.path">/v1/admin/withdraw-manual-audit/initial-review</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;:${orderId},&#xd;
+	&quot;status&quot;:2,&#xd;
+	&quot;sendEmail&quot;:1,&#xd;
+	&quot;remark&quot;:&quot;&quot;,&#xd;
+	&quot;feedback&quot;:&quot;&quot;,&#xd;
+	&quot;fee&quot;:0&#xd;
+}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在未审核订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金待风控审订单" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="出金待风控审订单查询" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=5</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderIds; totalCount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderIds; totalCount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id; $.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND;NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="判断是否满足准入条件" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&apos;totalCount&apos;) != &apos;0&apos; &amp;&amp; vars.get(&apos;orderIds_matchNr&apos;).toInteger() &gt; 0)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+            <stringProp name="TestPlan.comments">total 不等于 0且 提取到的订单ID数量大于 0</stringProp>
+          </IfController>
+          <hashTree>
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+              <stringProp name="ForeachController.inputVal">orderIds</stringProp>
+              <stringProp name="ForeachController.returnVal">orderId</stringProp>
+              <boolProp name="ForeachController.useSeparator">true</boolProp>
+              <stringProp name="ForeachController.startIndex">0</stringProp>
+            </ForeachController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="风控审核" enabled="true">
+                <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.path">/v1/admin/withdraw-manual-audit/risk-review</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;:${orderId},&#xd;
+	&quot;status&quot;:2,&#xd;
+	&quot;sendEmail&quot;:1,&#xd;
+	&quot;remark&quot;:&quot;&quot;,&#xd;
+	&quot;feedback&quot;:&quot;&quot;,&#xd;
+	&quot;fee&quot;:0&#xd;
+}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="-547797305">&quot;success&quot;:true</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.custom_message"></stringProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">16</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+              </hashTree>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在未审核订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=5</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金待扣款审订单" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="出金待扣款审订单查询" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=6</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderId" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderId</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 total" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">total</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 amount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">amount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].amountUsd</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 exchangeRate" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+            <stringProp name="ForeachController.inputVal">orderId</stringProp>
+            <stringProp name="ForeachController.returnVal">currentOrderId</stringProp>
+            <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.startIndex">0</stringProp>
+          </ForeachController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="扣款审核" enabled="true">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/admin/withdraw-manual-audit/deduction-review</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;id&quot;: ${currentOrderId},&#xd;
+    &quot;status&quot;: 2,&#xd;
+    &quot;sendEmail&quot;: 1,&#xd;
+    &quot;remark&quot;: &quot;auto audit&quot;,&#xd;
+    &quot;feedback&quot;: &quot;&quot;,&#xd;
+    &quot;fee&quot;: 0,&#xd;
+    &quot;amount&quot;: ${amount},&#xd;
+    &quot;exchangeRate&quot;: ${exchangeRate},&#xd;
+    &quot;convertAmount&quot;: ${current_amount}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-547797305">&quot;success&quot;:true</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">// 获取当前循环的索引
+int idx = vars.getIteration() - 1
+
+// 获取当前 orderId 对应的 amount 和 exchangeRate
+def amount = vars.get(&quot;amount_&quot; + (idx + 1)) as BigDecimal
+def exchangeRate = vars.get(&quot;exchangeRate_&quot; + (idx + 1)) as BigDecimal
+
+// 计算 current_amount
+def current_amount = amount.multiply(exchangeRate)
+
+// 保存到变量
+vars.put(&quot;current_amount&quot;, current_amount.toPlainString())
+vars.put(&quot;orderId&quot;, vars.get(&quot;orderId_&quot; + (idx + 1)))
+vars.put(&quot;amount&quot;, amount.toPlainString())
+vars.put(&quot;exchangeRate&quot;, exchangeRate.toPlainString())</stringProp>
+              </JSR223PreProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在未审核订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/withdraw-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=6</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账审核" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="转账待审核订单查询" enabled="true">
+            <stringProp name="TestPlan.comments">/v1/admin/transaction/transfer-list?page=1&amp;pageSize=10&amp;email=hani01@test.com&amp;status=0</stringProp>
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/transfer-list?page=1&amp;pageSize=100&amp;email=${email}&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderIds; totalCount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderIds; totalCount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id; $.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND;NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="判断是否满足准入条件" enabled="true">
+            <stringProp name="IfController.condition">${__groovy(vars.get(&apos;totalCount&apos;) != &apos;0&apos; &amp;&amp; vars.get(&apos;orderIds_matchNr&apos;).toInteger() &gt; 0)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+            <stringProp name="TestPlan.comments">total 不等于 0且 提取到的订单ID数量大于 0</stringProp>
+          </IfController>
+          <hashTree>
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+              <stringProp name="ForeachController.inputVal">orderIds</stringProp>
+              <stringProp name="ForeachController.returnVal">orderId</stringProp>
+              <boolProp name="ForeachController.useSeparator">true</boolProp>
+              <stringProp name="ForeachController.startIndex">0</stringProp>
+            </ForeachController>
+            <hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="转账审核" enabled="true">
+                <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.path">/v1/admin/transaction/transfer-audit</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">PATCH</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&#xd;
+    &quot;id&quot;: ${orderId},&#xd;
+    &quot;sendEmail&quot;: 1,&#xd;
+    &quot;status&quot;: 3,&#xd;
+    &quot;feedback&quot;: &quot;&quot;,&#xd;
+    &quot;auditNote&quot;: &quot;&quot;&#xd;
+}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在未审核订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/transfer-list?page=1&amp;pageSize=100&amp;email=${email}&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金待审订单" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金待审订单查询" enabled="true">
+            <stringProp name="TestPlan.comments">/v1/admin/transaction/deposit-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=0</stringProp>
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderId" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderId</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 total" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">total</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 amount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">amount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].amountUsd</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 exchangeRate" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 covertAmount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">covertAmount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].covertAmount</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+            <stringProp name="ForeachController.inputVal">orderId</stringProp>
+            <stringProp name="ForeachController.returnVal">currentOrderId</stringProp>
+            <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.startIndex">0</stringProp>
+          </ForeachController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金审核" enabled="true">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-audit</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">PATCH</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;id&quot;: ${currentOrderId},&#xd;
+    &quot;sendEmail&quot;: 1,&#xd;
+    &quot;returnFees&quot;: 0,&#xd;
+    &quot;status&quot;: 3,&#xd;
+    &quot;depositStatus&quot;: 1,&#xd;
+    &quot;auditNote&quot;: &quot;&quot;,&#xd;
+    &quot;feedback&quot;: &quot;&quot;,&#xd;
+    &quot;amount&quot;: ${amount},&#xd;
+    &quot;covertAmount&quot;: ${covertAmount},&#xd;
+    &quot;exchangeRate&quot;: ${exchangeRate},&#xd;
+    &quot;bankCardStatus&quot;: 0,&#xd;
+    &quot;bankCardNumber&quot;: &quot;&quot;,&#xd;
+    &quot;bankExpireDate&quot;: 0,&#xd;
+    &quot;fee&quot;: 0,&#xd;
+    &quot;images&quot;: []&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">// 获取当前循环的索引
+int idx = vars.getIteration() - 1
+
+// 获取当前 orderId 对应的 amount，exchangeRate，covertAmount
+def amount = vars.get(&quot;amount_&quot; + (idx + 1)) as BigDecimal
+def exchangeRate = vars.get(&quot;exchangeRate_&quot; + (idx + 1)) as BigDecimal
+def covertAmount = vars.get(&quot;covertAmount_&quot; + (idx + 1)) as BigDecimal
+
+
+vars.put(&quot;orderId&quot;, vars.get(&quot;orderId_&quot; + (idx + 1)))
+vars.put(&quot;amount&quot;, amount.toPlainString())
+vars.put(&quot;exchangeRate&quot;, exchangeRate.toPlainString())
+vars.put(&quot;covertAmount&quot;, covertAmount.toPlainString())</stringProp>
+              </JSR223PreProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在待审核订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=0</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金审核中订单清理" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金审核中订单查询" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=1</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 orderId" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">orderId</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 total" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">total</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.total</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 amount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">amount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].amountUsd</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 exchangeRate" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].exchangeRate</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器 covertAmount" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">covertAmount</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[*].covertAmount</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach控制器" enabled="true">
+            <stringProp name="ForeachController.inputVal">orderId</stringProp>
+            <stringProp name="ForeachController.returnVal">currentOrderId</stringProp>
+            <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.startIndex">0</stringProp>
+          </ForeachController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金复审" enabled="true">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-audit</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">PATCH</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;id&quot;: ${currentOrderId},&#xd;
+    &quot;sendEmail&quot;: 1,&#xd;
+    &quot;returnFees&quot;: 0,&#xd;
+    &quot;status&quot;: 3,&#xd;
+    &quot;depositStatus&quot;: 1,&#xd;
+    &quot;auditNote&quot;: &quot;&quot;,&#xd;
+    &quot;feedback&quot;: &quot;&quot;,&#xd;
+    &quot;amount&quot;: ${amount},&#xd;
+    &quot;covertAmount&quot;: ${covertAmount},&#xd;
+    &quot;exchangeRate&quot;: ${exchangeRate},&#xd;
+    &quot;bankCardStatus&quot;: 0,&#xd;
+    &quot;bankCardNumber&quot;: &quot;&quot;,&#xd;
+    &quot;bankExpireDate&quot;: 0,&#xd;
+    &quot;fee&quot;: 0,&#xd;
+    &quot;images&quot;: []&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">// 获取当前循环的索引
+int idx = vars.getIteration() - 1
+
+// 获取当前 orderId 对应的 amount，exchangeRate，covertAmount
+def amount = vars.get(&quot;amount_&quot; + (idx + 1)) as BigDecimal
+def exchangeRate = vars.get(&quot;exchangeRate_&quot; + (idx + 1)) as BigDecimal
+def covertAmount = vars.get(&quot;covertAmount_&quot; + (idx + 1)) as BigDecimal
+
+
+vars.put(&quot;orderId&quot;, vars.get(&quot;orderId_&quot; + (idx + 1)))
+vars.put(&quot;amount&quot;, amount.toPlainString())
+vars.put(&quot;exchangeRate&quot;, exchangeRate.toPlainString())
+vars.put(&quot;covertAmount&quot;, covertAmount.toPlainString())</stringProp>
+              </JSR223PreProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="判断是否还存在审核中订单" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/transaction/deposit-list?page=1&amp;pageSize=100&amp;email=${email}&amp;searchType=accountNo&amp;status=1</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="2121102134">&quot;total&quot;:0</stringProp>
+                <stringProp name="-216701032">&quot;items&quot;:[]</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="调试取样器" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="订单及返佣" enabled="false">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="下单" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT5下单" enabled="true">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">10051</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -193,13 +1062,13 @@
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt5_position_id">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt5_position_id" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">mt5_position_id</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-1710448674">&quot;开仓成功&quot;</stringProp>
               </collectionProp>
@@ -210,7 +1079,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT4下单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT4下单" enabled="true">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">10041</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -241,7 +1110,7 @@
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt4_position_id">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt4_position_id" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">mt4_position_id</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
@@ -265,12 +1134,12 @@
           <stringProp name="ActionProcessor.duration">5000</stringProp>
         </TestAction>
         <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="中间件-持仓">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="中间件-持仓" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件获取MT5持仓订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件获取MT5持仓订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -284,35 +1153,35 @@
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_position_orderId51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].position_ticket</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_position_cmd51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].side</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_position_Symbol51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].symbol</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_position_Volume51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[*].volume_lots</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-694971508">&quot;position_ticket&quot;:${mt5_position_id}</stringProp>
               </collectionProp>
@@ -323,7 +1192,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件获取MT4持仓订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件获取MT4持仓订单" enabled="true">
             <stringProp name="TestPlan.comments">1012</stringProp>
             <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -366,7 +1235,7 @@
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-189412883">&quot;position_ticket&quot;:${mt4_position_id}</stringProp>
               </collectionProp>
@@ -383,7 +1252,7 @@
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Host" elementType="Header">
                 <stringProp name="Header.name">Host</stringProp>
@@ -465,7 +1334,7 @@
             <stringProp name="TestPlan.comments">clienttoken_1</stringProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="客户端登录">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="客户端登录" enabled="true">
             <stringProp name="TestPlan.comments">IB账号登录</stringProp>
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -506,7 +1375,7 @@
             </BoundaryExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT5持仓订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT5持仓订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction-report/open-positions?page=1&amp;pageSize=10&amp;accountId=${userSearchValue51}</stringProp>
@@ -548,7 +1417,7 @@
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="621362251">&quot;orderId&quot;:&quot;${mt5_position_id}&quot;</stringProp>
               </collectionProp>
@@ -559,7 +1428,7 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT4持仓订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT4持仓订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction-report/open-positions?page=1&amp;pageSize=10&amp;accountId=${userSearchValue41}</stringProp>
@@ -698,7 +1567,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -745,7 +1614,7 @@
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台查询MT5持仓订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台查询MT5持仓订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -820,7 +1689,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="621362251">&quot;orderId&quot;:&quot;${mt5_position_id}&quot;</stringProp>
               </collectionProp>
@@ -1028,7 +1897,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </BeanShellAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台查询MT4持仓订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台查询MT4持仓订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -1311,12 +2180,12 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="平仓">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="平仓" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT5平仓">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT5平仓" enabled="true">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">10051</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -1345,13 +2214,13 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt5_order_id">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="mt5_order_id" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">mt5_order_id</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-1840665135">&quot;平仓成功&quot;</stringProp>
               </collectionProp>
@@ -1362,7 +2231,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT4平仓">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="MT4平仓" enabled="true">
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">10041</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -1420,7 +2289,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT5历史订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT5历史订单" enabled="true">
             <stringProp name="TestPlan.comments">200006</stringProp>
             <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -1435,7 +2304,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1462,35 +2331,35 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="TestPlan.comments">获取七天前到当前时间的时间戳</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_orderId51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].order_ticket</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_cmd51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].type</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_Symbol51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].symbol</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_Volume51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].volume_initial</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-684747886">&quot;order_ticket&quot;:${mt5_order_id}</stringProp>
               </collectionProp>
@@ -1501,7 +2370,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT4历史订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT4历史订单" enabled="true">
             <stringProp name="TestPlan.comments">1012</stringProp>
             <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -1543,35 +2412,35 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="TestPlan.comments">获取七天前到当前时间的时间戳</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_orderId41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].order_ticket</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_cmd41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].type</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_Symbol41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].symbol</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">middle_history_Volume41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].volume_initial</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="1112203473">&quot;order_ticket&quot;:${mt4_order_id}</stringProp>
               </collectionProp>
@@ -1583,7 +2452,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="客户端-平仓">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="客户端-平仓" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -1670,7 +2539,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             <stringProp name="TestPlan.comments">clienttoken_1</stringProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT5历史订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="前端-MT5历史订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction-report/order-history?page=1&amp;pageSize=10&amp;accountId=${userSearchValue51}</stringProp>
@@ -1861,7 +2730,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台MT5历史订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台MT5历史订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -1880,7 +2749,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1908,28 +2777,28 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="TestPlan.comments">获取七天前到当前时间的时间戳</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取所订单号">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取所订单号" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_orderId51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].orderId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_cmd51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].type</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_Symbol51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].symbol</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_Volume51</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].volumeInitial</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -1946,7 +2815,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <intProp name="Assertion.test_type">2</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">// 获取三个接口的匹配数量（总订单数）
 String clientCountStr = vars.get(&quot;client_history_orderId51_matchNr&quot;);
 String adminCountStr = vars.get(&quot;admin_history_orderId51_matchNr&quot;);
@@ -2144,7 +3013,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </BeanShellAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台MT4历史订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台MT4历史订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -2191,14 +3060,14 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="TestPlan.comments">获取七天前到当前时间的时间戳</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_orderId41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].orderId</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易方向" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_cmd41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].type</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -2206,7 +3075,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易品种" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_Symbol41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].symbol</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -2214,7 +3083,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取交易手数" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">admin_history_Volume41</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].volumeInitial</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
@@ -2232,7 +3101,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <intProp name="Assertion.test_type">2</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell断言" enabled="true">
               <stringProp name="BeanShellAssertion.query">// 获取三个接口的匹配数量（总订单数）
 String clientCountStr = vars.get(&quot;client_history_orderId41_matchNr&quot;);
 String adminCountStr = vars.get(&quot;admin_history_orderId41_matchNr&quot;);
@@ -2436,7 +3305,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT5挂单订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT5挂单订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.path">/crm20/get_order_info?instanceid=${mt5instanceid}&amp;login=${userSearchValue51}</stringProp>
@@ -2621,7 +3490,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="管理端-挂单">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="管理端-挂单" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -2707,7 +3576,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询MT5挂单订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询MT5挂单订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -2726,7 +3595,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -2754,7 +3623,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <stringProp name="TestPlan.comments">获取七天前到当前时间的时间戳</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-1207110391">orderId</stringProp>
               </collectionProp>
@@ -2765,7 +3634,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询MT4挂单订单">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查询MT4挂单订单" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/v1/admin/report/transaction/list</stringProp>
@@ -2784,7 +3653,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="动态获取时间戳" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -2972,7 +3841,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="转账" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="转账" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -3189,7 +4058,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交异名转账(通过）" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交异名转账(通过）">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction/create-different-name-transfer</stringProp>
@@ -3216,13 +4085,13 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器">
               <stringProp name="JSONPostProcessor.referenceNames">transferpass_id</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="34624981">&quot;id&quot;:</stringProp>
               </collectionProp>
@@ -3232,10 +4101,49 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               <intProp name="Assertion.test_type">2</intProp>
             </ResponseAssertion>
             <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单ID order_id_ym" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">order_id_ym</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">ID_NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账后历史订单查询">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/x/transaction/history?type=3&amp;page=1&amp;pageSize=10&amp;sourceType=1</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号 orderNumber_ym">
+              <stringProp name="JSONPostProcessor.referenceNames">orderNumber_ym</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$..items[?(@.id == ${order_id_ym})].orderNumber</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+              <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-2008824019">${order_id_ym}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
           </hashTree>
           <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="仅一次控制器"/>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/x/mfa/request</stringProp>
@@ -3410,7 +4318,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               </RegexExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="佣金钱包同名转账" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="佣金钱包同名转账">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/x/commission-wallet/same-name-transfer</stringProp>
@@ -3493,7 +4401,7 @@ try {
               <stringProp name="ActionProcessor.duration">5000</stringProp>
             </TestAction>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同名转账（自动通过）" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同名转账（自动通过）">
               <stringProp name="TestPlan.comments">无信用金，不需要审核</stringProp>
               <intProp name="HTTPSampler.connect_timeout">10000</intProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
@@ -3529,10 +4437,39 @@ try {
                 <intProp name="Assertion.test_type">2</intProp>
               </ResponseAssertion>
               <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单ID order_id_tm" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">order_id_tm</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">ID_NOT_FOUND</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同名转账后历史订单查询" enabled="true">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/x/transaction/history?type=3&amp;page=1&amp;pageSize=10&amp;sourceType=1</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号 orderNumber_tm" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">orderNumber_tm</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..items[?(@.id == ${order_id_tm})].orderNumber</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账后端" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账后端">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -3801,9 +4738,70 @@ try {
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="资金列表查询" enabled="true">
+            <stringProp name="LoopController.loops">2</stringProp>
+          </LoopController>
+          <hashTree>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="计数器" enabled="true">
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">cnt</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">false</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="资金列表查询 ${final_transaction_id}" enabled="true">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/v1/admin/report/funds/list</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;mtTransactionId&quot;: &quot;${final_transaction_id}&quot;,&#xd;
+    &quot;userSearchType&quot;: &quot;username&quot;,&#xd;
+    &quot;page&quot;: 1,&#xd;
+    &quot;pageSize&quot;: 10&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-98460511">${final_transaction_id}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="script">def count = vars.get(&quot;cnt&quot;);
+def finalId = (count == &quot;1&quot;) ? vars.get(&quot;orderNumber_ym&quot;) : vars.get(&quot;orderNumber_tm&quot;);
+
+vars.put(&quot;final_transaction_id&quot;, finalId);
+</stringProp>
+              </JSR223PreProcessor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="入金" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="入金">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">120</longProp>
@@ -3817,7 +4815,7 @@ try {
       </ThreadGroup>
       <hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器">
-          <stringProp name="LoopController.loops">4</stringProp>
+          <stringProp name="LoopController.loops">12</stringProp>
           <stringProp name="TestPlan.comments">MT4/MT5的美元和美分账号分别入金两次，一个审核成功一次失败</stringProp>
         </LoopController>
         <hashTree>
@@ -3830,10 +4828,10 @@ try {
             <boolProp name="recycle">true</boolProp>
             <stringProp name="shareMode">shareMode.group</stringProp>
             <boolProp name="stopThread">false</boolProp>
-            <stringProp name="variableNames">accountId,amount,channelId,paymentMethod,currencyId,initial_status,recheck_status</stringProp>
+            <stringProp name="variableNames">accountId,amount,channelId,paymentMethod,currencyId,sourceType,initial_status,recheck_status</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金前端">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金前端" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -3975,7 +4973,7 @@ try {
               </BoundaryExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="美元换算" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="美元换算">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -3993,6 +4991,7 @@ try {
 	&quot;accountId&quot;: ${accountId},&#xd;
 	&quot;channelId&quot;:${channelId},&#xd;
 	&quot;currencyId&quot;: ${currencyId},&#xd;
+	&quot;sourceType&quot;:${sourceType},&#xd;
 	&quot;type&quot;:&quot;deposit&quot;&#xd;
 }</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
@@ -4037,6 +5036,7 @@ try {
 	&quot;channelId&quot;:${channelId},&#xd;
 	&quot;paymentMethod&quot;:${paymentMethod},&#xd;
 	&quot;currencyId&quot;:${currencyId},&#xd;
+	&quot;sourceType&quot;:${sourceType},&#xd;
 	&quot;cryptoInfo&quot;:&#xd;
 		{&quot;imageUploads&quot;:[&quot;27cbe7e6-47ac-40c4-9913-f6a3a439428a&quot;,&quot;b103cc3d-6f70-4e52-a7d5-2c416e1a6021&quot;]}&#xd;
 }</stringProp>
@@ -4066,7 +5066,7 @@ try {
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金订单查询">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金订单查询" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/x/transaction/history?type=1&amp;page=1&amp;pageSize=100&amp;sourceType=1</stringProp>
@@ -4079,13 +5079,13 @@ try {
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取account">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取account" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">account</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[?(@.id == ${id})].account</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
               </JSONPostProcessor>
               <hashTree/>
-              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON断言">
+              <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON断言" enabled="true">
                 <stringProp name="JSON_PATH">$.items[?(@.orderNumber == &apos;${orderNumber}&apos;)]</stringProp>
                 <stringProp name="EXPECTED_VALUE"></stringProp>
                 <boolProp name="JSONVALIDATION">false</boolProp>
@@ -4333,7 +5333,7 @@ try {
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="-1363924920">&quot;orderNo&quot;:&quot;${orderNumber}&quot;</stringProp>
                 </collectionProp>
@@ -4344,7 +5344,7 @@ try {
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF 控制器">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF 控制器" enabled="true">
               <stringProp name="IfController.condition">${__jexl3(${initial_status} == 1)}</stringProp>
               <boolProp name="IfController.evaluateAll">false</boolProp>
               <boolProp name="IfController.useExpression">true</boolProp>
@@ -4388,7 +5388,7 @@ try {
                 <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
               </HTTPSamplerProxy>
               <hashTree/>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="复审订单查询">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="复审订单查询" enabled="true">
                 <stringProp name="TestPlan.comments">Created from cURL on 2026-01-23T15:19:41.2258112</stringProp>
                 <stringProp name="HTTPSampler.domain">${ip}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4444,13 +5444,13 @@ try {
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF 控制器">
+              <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF 控制器" enabled="true">
                 <stringProp name="IfController.condition">${__jexl3(${recheck_status} == 2)}</stringProp>
                 <boolProp name="IfController.evaluateAll">false</boolProp>
                 <boolProp name="IfController.useExpression">true</boolProp>
               </IfController>
               <hashTree>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金退回">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金退回" enabled="true">
                   <stringProp name="HTTPSampler.domain">${ip}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
                   <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -4486,12 +5486,7 @@ try {
                     <collectionProp name="Arguments.arguments">
                       <elementProp name="" elementType="HTTPArgument">
                         <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                        <stringProp name="Argument.value">{&#xd;
-	&quot;userSearchType&quot;:&quot;account&quot;,&#xd;
-	&quot;userSearchValue&quot;:&quot;${account}&quot;,&#xd;
-	&quot;page&quot;:1,&#xd;
-	&quot;pageSize&quot;:10&#xd;
-}</stringProp>
+                        <stringProp name="Argument.value">{&quot;mtTransactionId&quot;:&quot;${orderNumber}&quot;,&quot;userSearchType&quot;:&quot;username&quot;,&quot;page&quot;:1,&quot;pageSize&quot;:10}</stringProp>
                         <stringProp name="Argument.metadata">=</stringProp>
                       </elementProp>
                     </collectionProp>
@@ -4575,7 +5570,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
               </BeanShellAssertion>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台入信用金">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台入信用金" enabled="true">
               <stringProp name="TestPlan.comments">MT账号：12059</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -4602,7 +5597,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台入金">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台入金" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/v1/admin/transaction/create-account-transaction</stringProp>
@@ -4638,7 +5633,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="出金" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="出金" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">600</longProp>
@@ -4655,7 +5650,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
           <stringProp name="LoopController.loops">10</stringProp>
         </LoopController>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="true">
             <stringProp name="filename">Withdraw Automation data.csv</stringProp>
             <stringProp name="fileEncoding">UTF-8</stringProp>
             <stringProp name="variableNames">withdraw_type,accountId,sourceType,amount,channelId,paymentMethod,currencyId,initial_status,risk_status,deduction_status,cardInfo,cryptoInfo,eWalletInfo,wireTransferInfo,bankInfo</stringProp>
@@ -4667,7 +5662,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
             <stringProp name="shareMode">shareMode.all</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金前端" enabled="true">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金前端">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -4982,7 +5977,7 @@ log.info(&quot;最终组装的请求体：\n&quot; + finalJson);</stringProp>
               <stringProp name="TestPlan.comments">拼接请求</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交出金" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交出金">
               <stringProp name="TestPlan.comments">加密货币</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5015,13 +6010,44 @@ log.info(&quot;最终组装的请求体：\n&quot; + finalJson);</stringProp>
               <stringProp name="ActionProcessor.duration">30000</stringProp>
             </TestAction>
             <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提现历史">
+              <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+              <stringProp name="HTTPSampler.protocol">https</stringProp>
+              <stringProp name="HTTPSampler.path">/x/transaction/history?type=2&amp;page=1&amp;pageSize=10&amp;sourceType=1</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1118456220">${withdraw_id}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号 withdraw_orderNumber" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">withdraw_orderNumber</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$..items[?(@.id == ${withdraw_id})].orderNumber</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+            </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金后端">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金后端" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Connection" elementType="Header">
                   <stringProp name="Header.name">Connection</stringProp>
@@ -5102,7 +6128,7 @@ log.info(&quot;最终组装的请求体：\n&quot; + finalJson);</stringProp>
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -5439,7 +6465,7 @@ ${__jexl3(${riskReviewStatus2} == 0 &amp;&amp; (${initial_status} == 1 || ${init
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="汇款" enabled="true">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="汇款">
               <stringProp name="IfController.condition">//${__jexl3(&quot;${initial_status}&quot; == &quot;1&quot; &amp;&amp; &quot;${risk_status}&quot; == &quot;1&quot; &amp;&amp; &quot;${deduction_status} == 1&quot;)}
 
 //vars.get(&quot;${initial_status}&quot;) != null &amp;&amp; vars.get(&quot;${initial_status}&quot;).equals(&quot;1&quot;) &amp;&amp; vars.get(&quot;${risk_status}&quot;) != null &amp;&amp; vars.get(&quot;${risk_status}&quot;).equals(&quot;1&quot;) &amp;&amp; vars.get(&quot;${deduction_status}&quot;) != null &amp;&amp; vars.get(&quot;${deduction_status}&quot;).equals(&quot;1&quot;)
@@ -5479,8 +6505,44 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
                 </elementProp>
               </HTTPSamplerProxy>
               <hashTree/>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="资金管理-入金查询-${withdraw_orderNumber}" enabled="true">
+                <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+                <stringProp name="HTTPSampler.protocol">https</stringProp>
+                <stringProp name="HTTPSampler.path">/v1/admin/report/funds/list</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&#xd;
+    &quot;mtTransactionId&quot;: &quot;${withdraw_orderNumber}&quot;,&#xd;
+    &quot;userSearchType&quot;: &quot;username&quot;,&#xd;
+    &quot;page&quot;: 1,&#xd;
+    &quot;pageSize&quot;: 10&#xd;
+}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="1843422369">&quot;orderId&quot;:&quot;${withdraw_orderNumber}&quot;</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.custom_message"></stringProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">2</intProp>
+                  <stringProp name="TestPlan.comments">判断是否包含本次入金的订单号</stringProp>
+                </ResponseAssertion>
+                <hashTree/>
+              </hashTree>
             </hashTree>
-            <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="后台出金"/>
+            <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="后台出金" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台出信用金" enabled="true">
                 <stringProp name="HTTPSampler.domain">${ip}</stringProp>
@@ -5508,7 +6570,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
                 </elementProp>
               </HTTPSamplerProxy>
               <hashTree/>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台出金">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="后台出金" enabled="true">
                 <stringProp name="HTTPSampler.domain">${ip}</stringProp>
                 <stringProp name="HTTPSampler.protocol">https</stringProp>
                 <stringProp name="HTTPSampler.path">/v1/admin/transaction/create-account-transaction</stringProp>
@@ -5545,7 +6607,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="修改杠杆">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="修改杠杆" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -5556,7 +6618,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="客户端">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="客户端" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -5647,7 +6709,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             <stringProp name="TestPlan.comments">clienttoken_1</stringProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="客户端登录">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="客户端登录" enabled="true">
             <stringProp name="TestPlan.comments">IB账号登录</stringProp>
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5720,7 +6782,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取withdraw_otp">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取withdraw_otp" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">leverage_otp</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.otp</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -5746,14 +6808,14 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取token">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取token" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">token</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.authToken</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改杠杆">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改杠杆" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/mt/account/modify-leverage</stringProp>
@@ -5772,7 +6834,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序">
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 预处理程序" enabled="true">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -5788,7 +6850,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             </JSR223PreProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查看账号信息">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="查看账号信息" enabled="true">
             <stringProp name="TestPlan.comments">判断杠杆修改是否成功</stringProp>
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5802,110 +6864,277 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器">
-              <stringProp name="JSONPostProcessor.referenceNames">leverage</stringProp>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">client_leverage</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[?(@.id == ${account_id1})].leverage</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="对比杠杆" enabled="false">
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="管理端" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Connection" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="Content-Length" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">101</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-platform" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+              </elementProp>
+              <elementProp name="x-device-code" elementType="Header">
+                <stringProp name="Header.name">x-device-code</stringProp>
+                <stringProp name="Header.value">7b3aea63-3d71-4aa8-b9a7-6127a5542bc9</stringProp>
+              </elementProp>
+              <elementProp name="User-Agent" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36</stringProp>
+              </elementProp>
+              <elementProp name="accept" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua</stringProp>
+                <stringProp name="Header.value">&quot;Chromium&quot;;v=&quot;142&quot;, &quot;Google Chrome&quot;;v=&quot;142&quot;, &quot;Not_A Brand&quot;;v=&quot;99&quot;</stringProp>
+              </elementProp>
+              <elementProp name="content-type" elementType="Header">
+                <stringProp name="Header.name">content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                <stringProp name="Header.value">?0</stringProp>
+              </elementProp>
+              <elementProp name="Origin" elementType="Header">
+                <stringProp name="Header.name">Origin</stringProp>
+                <stringProp name="Header.value">https://crm2-admin-test.mohicanstech.com</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Site" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+                <stringProp name="Header.value">same-site</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Mode" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+                <stringProp name="Header.value">cors</stringProp>
+              </elementProp>
+              <elementProp name="Sec-Fetch-Dest" elementType="Header">
+                <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+                <stringProp name="Header.value">empty</stringProp>
+              </elementProp>
+              <elementProp name="Referer" elementType="Header">
+                <stringProp name="Header.name">Referer</stringProp>
+                <stringProp name="Header.value">https://crm2-admin-test.mohicanstech.com/</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Encoding" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+              </elementProp>
+              <elementProp name="Accept-Language" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">zh-CN,zh;q=0.9</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cookie</stringProp>
+                <stringProp name="Header.value">admin_auth_token=${auth_token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-csrf-token</stringProp>
+                <stringProp name="Header.value">${csrf_token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-hcaptcha-skip</stringProp>
+                <stringProp name="Header.value">true</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="管理端登录" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/admin-user/login</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;usernameOrEmail&quot;:&quot;${usernameOrEmail}&quot;,&#xd;
+	&quot;password&quot;:&quot;${password_2}&quot;,&#xd;
+	&quot;otp&quot;:&quot;123456&quot;,&#xd;
+	&quot;captchaCode&quot;:&quot;111111&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="auth_token" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">true</stringProp>
+              <stringProp name="RegexExtractor.refname">auth_token</stringProp>
+              <stringProp name="RegexExtractor.regex">admin_auth_token=([^;]+)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">null</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="csrf_token" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">csrf_token</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;token&quot;:&quot;([^,]+)&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">null</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同步账户信息" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/mt/account/refresh?userId=${userId}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待3秒" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">3000</stringProp>
+          </TestAction>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取MT账户信息" enabled="true">
+            <stringProp name="HTTPSampler.domain">${ip}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/v1/admin/mt/account/list?type=2&amp;page=1&amp;pageSize=10&amp;tradeAccount=${login1}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取杠杆" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">admin_leverage</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].leverage</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="912127494">&quot;leverage&quot;:${lev}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="中间件" enabled="true">
+          <boolProp name="TransactionController.parent">true</boolProp>
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件-查看用户信息" enabled="true">
+            <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.path">crm20/get_user_info?instanceid=${mt4instanceid}&amp;login=${login1}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="103149417">login</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">48</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取杠杆" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">middle_leverage</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].leverage</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="对比杠杆" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="script">// 获取两个变量
-String lev = vars.get(&quot;lev&quot;);
-String leverage = vars.get(&quot;leverage&quot;);
-
-if(lev == null || leverage == null) {
-    SampleResult.setSuccessful(false);
-    SampleResult.setResponseMessage(&quot;❌ 失败：变量不存在&quot;);
-} else if(lev.equals(leverage)) {
-    SampleResult.setResponseMessage(&quot;✅ 成功：lev = &quot; + lev + &quot;，leverage = &quot; + leverage);
-} else {
-    SampleResult.setSuccessful(false);
-    SampleResult.setResponseMessage(&quot;❌ 失败：不相等！lev=&quot; + lev + &quot; | leverage=&quot; + leverage);
-}</stringProp>
-            </JSR223Assertion>
-            <hashTree/>
-          </hashTree>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="中间件-查看用户信息">
-          <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
-          <stringProp name="HTTPSampler.port">${port}</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.path">crm20/get_user_info?instanceid=${mt4instanceid}&amp;login=${login1}</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="103149417">login</stringProp>
-              <stringProp name="73596745">Login</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">48</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器">
-            <stringProp name="JSONPostProcessor.referenceNames">middle_leverage</stringProp>
-            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data[0].leverage</stringProp>
-            <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
-          </JSONPostProcessor>
-          <hashTree/>
-          <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="对比杠杆">
-            <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">// 获取变量
-String lev = vars.get(&quot;lev&quot;);
-String leverage = vars.get(&quot;leverage&quot;);
+              <stringProp name="script">String lev = vars.get(&quot;lev&quot;);
+String leverage = vars.get(&quot;client_leverage&quot;);
 String middle_leverage = vars.get(&quot;middle_leverage&quot;);
+String admin_leverage = vars.get(&quot;admin_leverage&quot;);
 
-// 必须用这两个变量，JMeter 才会显示失败信息
+// JMeter 固定写法
 boolean failure = false;
 String failureMessage = &quot;&quot;;
 
 // 判空
-if (lev == null || leverage == null || middle_leverage == null) {
+if (lev == null || leverage == null || middle_leverage == null || admin_leverage == null) {
     failure = true;
-    failureMessage = &quot;❌ 有变量为空：lev=&quot; + lev + &quot; leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage;
+    failureMessage = &quot;❌ 有变量为空：lev=&quot; + lev + &quot; client_leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage + &quot;admin_leverage=&quot; + admin_leverage;
 } 
-// 三个值必须全部相等
+// 四个值必须全部相等
 else if (lev.equals(leverage) &amp;&amp; lev.equals(middle_leverage)) {
-    failureMessage = &quot;✅ 断言成功：三个值完全一致！lev=&quot; + lev + &quot; leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage;
+    failureMessage = &quot;✅ 断言成功：四个值完全一致！lev=&quot; + lev + &quot; client_leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage + &quot;admin_leverage=&quot; + admin_leverage;
 } 
 // 不相等
 else {
     failure = true;
-    failureMessage = &quot;❌ 断言失败：三个值不一致！lev=&quot; + lev + &quot; leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage;
+    failureMessage = &quot;❌ 断言失败：四个值不一致！lev=&quot; + lev + &quot; client_leverage=&quot; + leverage + &quot; middle_leverage=&quot; + middle_leverage + &quot;admin_leverage=&quot; + admin_leverage;
 }
 
-// 固定写法 ↓↓↓ 必须这样写，JMeter 才会显示结果
+
 vars.put(&quot;assertResult&quot;, failureMessage);  // 把结果存下来
 Failure = failure;                        // 告诉JMeter是否失败
 FailureMessage = failureMessage;          // 显示信息</stringProp>
-          </JSR223Assertion>
-          <hashTree/>
+            </JSR223Assertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="调试取样器">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="调试取样器" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-测试环境" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-测试环境" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -5921,11 +7150,11 @@ FailureMessage = failureMessage;          // 显示信息</stringProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -5943,7 +7172,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop1&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="持仓订单">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="持仓订单" enabled="true">
               <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -6066,7 +7295,7 @@ vars.put(&quot;loop_count_Loop3&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="符号规格和实时报价">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="符号规格和实时报价" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
@@ -6204,12 +7433,12 @@ vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="CRM20">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="CRM20" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取挂单订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取挂单订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
@@ -6373,7 +7602,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop8&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息" enabled="true">
               <stringProp name="HTTPSampler.domain">${middlewareip}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -6782,7 +8011,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="中间件查询">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="中间件查询" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -6901,7 +8130,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-生产环境">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-生产环境" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -6912,16 +8141,16 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="扩展查询接口">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="扩展查询接口" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="持仓订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -6939,7 +8168,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop1&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="持仓订单">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="持仓订单" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -6965,11 +8194,11 @@ vars.put(&quot;loop_count_Loop1&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="待处理/历史订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="待处理/历史订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -6985,7 +8214,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop2&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="待处理/历史订单">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="待处理/历史订单" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7011,11 +8240,11 @@ vars.put(&quot;loop_count_Loop2&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="汇总的已平仓仓位(进出交易)">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="汇总的已平仓仓位(进出交易)" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7036,7 +8265,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop3&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="汇总的已平仓仓位(进出交易)">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="汇总的已平仓仓位(进出交易)" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7050,7 +8279,7 @@ vars.put(&quot;loop_count_Loop3&quot;, String.valueOf(count + 1));</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="103149417">login</stringProp>
                 </collectionProp>
@@ -7062,11 +8291,11 @@ vars.put(&quot;loop_count_Loop3&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="符号规格和实时报价">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="符号规格和实时报价" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7084,7 +8313,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="符号规格和实时报价">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="符号规格和实时报价" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7110,7 +8339,7 @@ vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="跨所有实例的账户级财务指标(权益:利润、利润率)">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="跨所有实例的账户级财务指标(权益:利润、利润率)" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7135,7 +8364,7 @@ vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="多维度聚合摘要(按实例、货币、组、风险、绩效)">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="多维度聚合摘要(按实例、货币、组、风险、绩效)" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7160,7 +8389,7 @@ vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="自定义统计聚合(SUM、AVG、MINMAX等)，支持可选分组">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="自定义统计聚合(SUM、AVG、MINMAX等)，支持可选分组" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7200,16 +8429,16 @@ vars.put(&quot;loop_count_Loop4&quot;, String.valueOf(count + 1));</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="CRM20">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="CRM20" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取挂单订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取挂单订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7226,7 +8455,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop5&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取挂单信息">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取挂单信息" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7252,11 +8481,11 @@ vars.put(&quot;loop_count_Loop5&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取持仓订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取持仓订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7273,7 +8502,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop6&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取持仓订单">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取持仓订单" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7300,11 +8529,11 @@ vars.put(&quot;loop_count_Loop6&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取历史订单">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取历史订单" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7321,7 +8550,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop7&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取历史">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取历史" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7348,11 +8577,11 @@ vars.put(&quot;loop_count_Loop7&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取用户信息">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取用户信息" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7369,7 +8598,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop8&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取用户信息" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7396,11 +8625,11 @@ vars.put(&quot;loop_count_Loop8&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取群组信息">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取群组信息" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7415,7 +8644,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop9&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取群组信息">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取群组信息" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7441,11 +8670,11 @@ vars.put(&quot;loop_count_Loop9&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取货币信息">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="获取货币信息" enabled="true">
             <stringProp name="LoopController.loops">2</stringProp>
           </LoopController>
           <hashTree>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell 预处理程序" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -7460,7 +8689,7 @@ if (count == 0) {
 vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取货币信息">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取货币信息" enabled="true">
               <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7486,7 +8715,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取服务器信息">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取服务器信息" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7511,7 +8740,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取归档账户">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="获取归档账户" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7544,7 +8773,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="充值/提现">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="充值/提现" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7571,7 +8800,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-339185956">balance</stringProp>
               </collectionProp>
@@ -7582,7 +8811,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改杠杆">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改杠杆" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7618,7 +8847,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="重置密码">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="重置密码" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7643,7 +8872,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改账户权限">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="修改账户权限" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7667,7 +8896,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="设置组权限">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="设置组权限" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7692,7 +8921,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="设置品种交易模式">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="设置品种交易模式" enabled="true">
             <stringProp name="HTTPSampler.domain">${production environment}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
@@ -7775,7 +9004,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">C:\Users\Admin\Downloads\TestReport_2026-04-17_05-02-05_JTL\TestReport_2026-04-17_05-02-05.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
