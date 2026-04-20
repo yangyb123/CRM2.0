@@ -6,6 +6,7 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量">
@@ -152,7 +153,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="清理环境" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="清理环境">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -1015,7 +1016,7 @@ vars.put(&quot;covertAmount&quot;, covertAmount.toPlainString())</stringProp>
         </DebugSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="订单及返佣" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="订单及返佣">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -3841,7 +3842,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="转账" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="转账">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -3852,7 +3853,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账前端">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账前端" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -4058,7 +4059,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交异名转账(通过）">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交异名转账(通过）" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction/create-different-name-transfer</stringProp>
@@ -4085,13 +4086,13 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON提取器" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">transferpass_id</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="34624981">&quot;id&quot;:</stringProp>
               </collectionProp>
@@ -4109,7 +4110,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账后历史订单查询">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账后历史订单查询" enabled="true">
             <stringProp name="HTTPSampler.domain">${ip}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/x/transaction/history?type=3&amp;page=1&amp;pageSize=10&amp;sourceType=1</stringProp>
@@ -4123,14 +4124,14 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号 orderNumber_ym">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取订单号 orderNumber_ym" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">orderNumber_ym</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$..items[?(@.id == ${order_id_ym})].orderNumber</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-2008824019">${order_id_ym}</stringProp>
               </collectionProp>
@@ -4141,7 +4142,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="仅一次控制器"/>
+          <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="仅一次控制器" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="异名转账" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
@@ -4318,7 +4319,7 @@ vars.put(&quot;startDate&quot;, String.valueOf(startTime));</stringProp>
               </RegexExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="佣金钱包同名转账">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="佣金钱包同名转账" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/x/commission-wallet/same-name-transfer</stringProp>
@@ -4401,7 +4402,7 @@ try {
               <stringProp name="ActionProcessor.duration">5000</stringProp>
             </TestAction>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同名转账（自动通过）">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="同名转账（自动通过）" enabled="true">
               <stringProp name="TestPlan.comments">无信用金，不需要审核</stringProp>
               <intProp name="HTTPSampler.connect_timeout">10000</intProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
@@ -4469,7 +4470,7 @@ try {
             </hashTree>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账后端">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="转账后端" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -4815,11 +4816,11 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
       </ThreadGroup>
       <hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器">
-          <stringProp name="LoopController.loops">12</stringProp>
+          <stringProp name="LoopController.loops">8</stringProp>
           <stringProp name="TestPlan.comments">MT4/MT5的美元和美分账号分别入金两次，一个审核成功一次失败</stringProp>
         </LoopController>
         <hashTree>
-          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置">
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV 数据文件设置" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding">UTF-8</stringProp>
             <stringProp name="filename">Deposit Automation data.csv</stringProp>
@@ -4973,7 +4974,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               </BoundaryExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="美元换算">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="美元换算" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -5017,7 +5018,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金" enabled="true">
               <stringProp name="TestPlan.comments">MT账号：12034</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5047,7 +5048,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               <stringProp name="HTTPSampler.implementation">Java</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取orderNumber和id">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取orderNumber和id" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">orderNumber;id</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.orderNumber;$.id</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1;1</stringProp>
@@ -5097,7 +5098,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               <hashTree/>
             </hashTree>
           </hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金后端">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="入金后端" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -5229,7 +5230,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               </RegexExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金查询">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金查询" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
@@ -5243,14 +5244,14 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取amountUsd">
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="提取amountUsd" enabled="true">
                 <stringProp name="JSONPostProcessor.referenceNames">amountUsd</stringProp>
                 <stringProp name="JSONPostProcessor.jsonPathExprs">$.items[0].amountUsd</stringProp>
                 <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="订单初审">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="订单初审" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2026-01-23T10:12:36.0608281</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5288,7 +5289,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="初审订单查询">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="初审订单查询" enabled="true">
               <stringProp name="TestPlan.comments">Created from cURL on 2026-01-23T16:49:55.0297885</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5333,7 +5334,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
                 <collectionProp name="Asserion.test_strings">
                   <stringProp name="-1363924920">&quot;orderNo&quot;:&quot;${orderNumber}&quot;</stringProp>
                 </collectionProp>
@@ -5474,7 +5475,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
                   </elementProp>
                 </HTTPSamplerProxy>
                 <hashTree/>
-                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="资金管理-入金查询">
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="资金管理-入金查询" enabled="true">
                   <stringProp name="HTTPSampler.domain">${ip}</stringProp>
                   <stringProp name="HTTPSampler.protocol">https</stringProp>
                   <stringProp name="HTTPSampler.path">/v1/admin/report/funds/list</stringProp>
@@ -5493,7 +5494,7 @@ vars.put(&quot;final_transaction_id&quot;, finalId);
                   </elementProp>
                 </HTTPSamplerProxy>
                 <hashTree>
-                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言">
+                  <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
                     <collectionProp name="Asserion.test_strings">
                       <stringProp name="1379452194">&quot;orderId&quot;:&quot;${orderNumber}&quot;</stringProp>
                     </collectionProp>
@@ -5633,7 +5634,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="出金" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="出金">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">600</longProp>
@@ -5646,7 +5647,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
           <stringProp name="LoopController.loops">10</stringProp>
         </LoopController>
         <hashTree>
@@ -5662,7 +5663,7 @@ if (amountStr == null || refundAmountStr == null || balanceBeforeStr == null || 
             <stringProp name="shareMode">shareMode.all</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金前端">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="出金前端" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -5977,7 +5978,7 @@ log.info(&quot;最终组装的请求体：\n&quot; + finalJson);</stringProp>
               <stringProp name="TestPlan.comments">拼接请求</stringProp>
             </BeanShellPreProcessor>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交出金">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提交出金" enabled="true">
               <stringProp name="TestPlan.comments">加密货币</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -6010,7 +6011,7 @@ log.info(&quot;最终组装的请求体：\n&quot; + finalJson);</stringProp>
               <stringProp name="ActionProcessor.duration">30000</stringProp>
             </TestAction>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提现历史">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="提现历史" enabled="true">
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/x/transaction/history?type=2&amp;page=1&amp;pageSize=10&amp;sourceType=1</stringProp>
@@ -6465,7 +6466,7 @@ ${__jexl3(${riskReviewStatus2} == 0 &amp;&amp; (${initial_status} == 1 || ${init
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="汇款">
+            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="汇款" enabled="true">
               <stringProp name="IfController.condition">//${__jexl3(&quot;${initial_status}&quot; == &quot;1&quot; &amp;&amp; &quot;${risk_status}&quot; == &quot;1&quot; &amp;&amp; &quot;${deduction_status} == 1&quot;)}
 
 //vars.get(&quot;${initial_status}&quot;) != null &amp;&amp; vars.get(&quot;${initial_status}&quot;).equals(&quot;1&quot;) &amp;&amp; vars.get(&quot;${risk_status}&quot;) != null &amp;&amp; vars.get(&quot;${risk_status}&quot;).equals(&quot;1&quot;) &amp;&amp; vars.get(&quot;${deduction_status}&quot;) != null &amp;&amp; vars.get(&quot;${deduction_status}&quot;).equals(&quot;1&quot;)
@@ -6607,7 +6608,7 @@ ${__jexl3(&quot;${riskReviewStatus4}&quot; == &quot;1&quot; &amp;&amp; &quot;${i
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="修改杠杆" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="修改杠杆">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -7134,7 +7135,7 @@ FailureMessage = failureMessage;          // 显示信息</stringProp>
         </DebugSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-测试环境" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-测试环境">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -8130,7 +8131,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-生产环境" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="中间件相关接口-生产环境">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -8970,7 +8971,7 @@ vars.put(&quot;loop_count_Loop10&quot;, String.valueOf(count + 1));</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="查看结果树">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="查看结果树" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
