@@ -1,7 +1,11 @@
-withdraw_type#currency#accountId#sourceType#amount#channelId#paymentMethod#currencyId#initial_status#risk_status#deduction_status#cardInfo#cryptoInfo#eWalletInfo#wireTransferInfo#bankInfo
-card#USD#40835#1#50#6#6#45#1#1#1#"{""bankCode"":15384}"####
-crypto#USD#41077#1#300#3#3#242#1#1#1##"{""walletAddress"": ""154AAA""}"###
-card#USD#57#1#50#6#6#45#1#1#1#"{""bankCode"":15384}"####
-crypto#USC#40857#1#300#3#3#242#1#1#1##"{""walletAddress"": ""154AAA""}"###
-card#USD#57#1#50#6#6#45#1#1#2#"{""bankCode"":15384}"####
-crypto#USC#40857#1#300#3#3#242#1#1#2##"{""walletAddress"": ""154AAA""}"###
+instanceid,account,currency,accountId,sourceType,amount,channelId,paymentMethod,currencyId,paymentType,initial_status,risk_status,deduction_status
+MT4_1,1012,USC,40857,1,5000,2,2,45,bank,1,1,1
+MT4_1,1012,USC,40857,1,4400,3,3,242,crypto,1,1,1
+MT5_1,3077,USC,41200,1,600,4,4,45,eWallet,1,1,1
+MT4_1,12110,USD,40835,1,80,6,6,45,card,1,1,1
+MT5_1,4050,USD,41077,1,79,8,8,45,wireTransfer,1,1,1
+MT4_1,1012,USC,40857,1,5000,2,2,45,bank,2,1,1
+MT4_1,1012,USC,40857,1,4400,3,3,242,crypto,1,2,1
+MT5_1,3077,USC,41200,1,600,4,4,45,eWallet,2,1,1
+MT4_1,12110,USD,40835,1,80,6,6,45,card,1,1,2
+MT5_1,4050,USD,41077,1,79,8,8,45,wireTransfer,1,1,2
