@@ -1,0 +1,6 @@
+instanceid_out,account,fromCurrency,accountId,amount,instanceid_in,toAccount,toAmount,toCurrency,toyiming_email,status,amountUSD,type,备注
+MT5_1,3077,USC,41200,150,MT4_1,1105,150,USC,hani02@test.com,2,1.5,2,51美分转41美分
+MT4_1,12110,USD,40835,2.1,MT5_1,880027,210,USC,hani02@test.com,2,2.1,2,41美元转51美元
+MT4_1,1012,USC,40857,315,MT5_1,4106,3.15,USD,hani02@test.com,2,3.15,2,41美分转51美分
+MT5_1,197163,USD,42231,1,MT4_1,12111,1,USD,hani02@test.com,3,1,2,51美元转41美元
+MT5_1,3077,USC,41200,110,MT4_1,1105,110,USC,hani02@test.com,3,1.1,2,51美分转41美分
