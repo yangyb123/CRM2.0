@@ -1,8 +1,7 @@
-instanceid,account,accountId,amount,channelId,paymentMethod,currencyId,sourceType,initial_status,recheck_status,refund_amount,备注
-MT5_1,4050,41077,100,116,4,1,1,1,2,2,MT5美元 电子钱包（支付宝3)
-MT5_1,3077,41200,7500,116,4,1,1,1,3,0,MT5美分电子钱包（支付宝3)
-MT4_1,1012,40857,30000,127,5,32,1,1,2,0,MT4美分 二维码（QR Payment2）
-MT4_1,12110,40835,50,127,5,32,1,1,3,0,MT4美元 USD 电汇（Bank Wire Global 6）
-MT5_1,3077,41200,1000,13,2,32,1,1,2,0,MT5美分 银行转账
-MT5_1,12150,40884,10,30,6,45,1,1,3,0,MT5美元 visa
-MT4_1,200004,40856,100,74,3,242,1,1,3,0,MT4美元加密货币
+instanceid,account,accountId,amount,channelId,paymentMethod,currencyId,sourceType,initial_status,recheck_status,refund_amount,amountUSD,currency,备注
+MT5_1,4050,41077,10,27,4,45,1,1,2,2,10,USD,MT5美元 电子钱包（Paysafe Skrill USD)
+MT5_1,3077,41200,500,27,4,45,1,1,3,0,5,USD,MT5美分电子钱包（Paysafe Skrill USD)
+MT5_1,909099,42232,10,194,6,1,1,1,2,0,10,CNY,MT5美元 visa Myfatoorah
+MT4_1,1012,40857,13000,191,3,242,1,1,2,0,130,USDT-TRC20,MT4美分 加密货币 Mpay USDT
+MT5_1,3077,41200,15000,191,3,242,1,1,2,0,150,USDT-TRC20,MT5美分 加密货币 Mpay USDT
+MT4_1,1012,40857,200,194,6,1,1,3,2,0,2,CNY,MT4美分 visa Myfatoorah

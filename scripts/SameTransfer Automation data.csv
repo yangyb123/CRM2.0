@@ -1,0 +1,6 @@
+instanceid_out,account,fromCurrency,accountId,amount,instanceid_in,toAccount,toAmount,toCurrency,status,amountUSD,type,audit_type,toAccountwallet,toAccountwallet,toCurrencywallet
+MT4_1,1012,USC,40857,99,MT5_1,3077,99,USC,0,0.99,0,2,User Wallet,U7LCYE,USD
+MT5_1,3077,USC,41200,226,MT5_1,880032,226,USC,2,2.26,0,2,User Wallet,U7LCYE,USD
+MT4_1,2017,USD,42233,1.47,MT5_1,3077,147,USC,2,1.47,2,2,User Wallet,U7LCYE,USD
+MT5_1,197163,USD,42231,2.21,MT4_1,12110,2.21,USD,0,2.21,0,3,User Wallet,U7LCYE,USD
+MT5_1,880032,USC,42081,20,MT4_1,2017,0.2,USD,0,0.2,2,3,User Wallet,U7LCYE,USD
