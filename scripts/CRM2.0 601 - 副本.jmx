@@ -7510,7 +7510,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
             <stringProp name="variableNames">instanceid,account,accountId,amount,channelId,paymentMethod,currencyId,sourceType,initial_status,recheck_status,refund_amount,amountUSD,currency</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="MT入金前端">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="MT入金前端" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
@@ -7723,7 +7723,7 @@ log.info(&quot;✅ 所有订单校验完成：三方完全一致&quot;);</string
               </JSONPostProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="入金" enabled="true">
               <stringProp name="TestPlan.comments">MT账号：12034</stringProp>
               <stringProp name="HTTPSampler.domain">${ip}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
